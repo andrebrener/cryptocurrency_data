@@ -45,4 +45,4 @@ Choose the time interval for the dates in the x-axis to be shown.
 
 ## Coin List
 
-To know which coins are available use `coin_list.ipynb` file.
+To know which coins are available see `coin_list.ipynb` file.
