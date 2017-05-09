@@ -34,7 +34,7 @@ To delete all content and start from scratch press `Kernel` and then `Restart & 
 ##### Data
 
 - Open the file [historic_data.ipynb](https://github.com/andrebrener/cryptocurrency_data/blob/master/historic_data.ipynb).
-- Choose the Coins that you like by adding them to the list. Make sure that their name is in the supported coin list and that it is written in capital letters. To know which coins are available see [coin_list.ipynb](http://localhost:8888/notebooks/coin_list.ipynb). 
+- Choose the Coins that you like by adding them to the list. Make sure that their name is in the supported coin list and that it is written in capital letters. To know which coins are available see [coin_list.ipynb](https://github.com/andrebrener/cryptocurrency_data/blob/master/coin_list.ipynb). 
 - Choose the last day of your report.
 - Choose how many days before the end date you want the data from.
 - Choose the type of price from `close`, `high`, `low`, `open`.
