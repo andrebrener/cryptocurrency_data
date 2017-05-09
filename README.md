@@ -9,7 +9,7 @@
 ## Install Packages Required
 
 Go in the directory of the repo and call the command
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ## Open Jupyter Notebook
 
