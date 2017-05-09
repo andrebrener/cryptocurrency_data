@@ -1,5 +1,5 @@
 # =============================================================================
-#          File: historic_data_functions.py
+#          File: api_functions.py
 #        Author: Andre Brener
 #       Created: 08 May 2017
 # Last Modified: 08 May 2017
@@ -13,6 +13,25 @@ import pandas as pd
 import matplotlib.dates as mdates
 
 from matplotlib import pyplot as plt
+
+
+def get_coin_list():
+
+    coin_list_url = 'https://www.cryptocompare.com/api/data/coinlist/'
+
+    response_text = requests.get(coin_list_url).text
+
+    d = json.loads(response_text)
+    data = d['Data']
+
+    coin_list = set([
+        val['Name'] for val in data.values()
+        if all(kw not in val['Name'] for kw in ['*', ' '])
+    ])
+
+    coin_list = sorted(list(coin_list), reverse=False)
+
+    return coin_list
 
 
 def get_price_history(coin_list, end_date, days_past, price_type):
@@ -31,6 +50,8 @@ def get_price_history(coin_list, end_date, days_past, price_type):
     total_df = total_df.pivot(
         index='time', columns='coin', values=price_type).reset_index()
     total_df['day'] = pd.to_datetime(total_df['time'], unit='s')
+    cols = [col for col in df.columns if col not in ['day']]
+    total_df = total_df[cols]
     return total_df
 
 
