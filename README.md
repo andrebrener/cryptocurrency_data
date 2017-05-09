@@ -23,21 +23,26 @@ The notebook is divided into blocks. Each block is run separately by pressing th
 
 The blocks must be run in order as the order of the code must be respected.
 
-To restart from scratch press `Kernel` and then `Restart & Clear Output`
+To delete all content and start from scratch press `Kernel` and then `Restart & Clear Output`
 
 ## Get historic Data
 
 #### Data
 
-- Open the file historic_data.ipynb.
+- Open the file `historic_data.ipynb`.
 - Choose the Coins that you like by adding them to the list. Make sure that their name is in the coin list (from the coin_list file) and that it is written in capital letters.
 - Choose the last day of your report.
 - Choose how many days before the end date you want the data from.
 - Choose the type of price from `close`, `high`, `low`, `open`.
 
-### Graph
+#### Graph
 Choose the time interval for the dates in the x-axis to be shown.
+
+#### Export CSV
+- Select File Name.
+- Run the block.
+- The file should be saved in the repo directory.
 
 ## Coin List
 
-To know which coins are available use coin_list.ipynb file.
+To know which coins are available use `coin_list.ipynb` file.
