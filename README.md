@@ -1,4 +1,4 @@
-# cryptocurrency_data
+# Cryptocurrency Prices
 
 The application uses the CryptoCompare API to get the prices.
 
