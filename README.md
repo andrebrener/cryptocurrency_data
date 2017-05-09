@@ -1,5 +1,7 @@
 # cryptocurrency_data
 
+The application uses the CryptoCompare API to get the prices.
+
 ### Getting Started
 
 ## Clone Repo
