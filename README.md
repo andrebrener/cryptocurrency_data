@@ -31,8 +31,6 @@ Each block is run separately by pressing the Play button (screenshot below) or w
 
 ![img](http://i.imgur.com/0EWhMFo.png)
 
-The blocks must be run in order as for the code to run without errors.
-
 To delete all content and start from scratch press `Kernel` and then `Restart & Clear Output`
 
 ![img](http://i.imgur.com/MmWNLh8.png)
@@ -42,15 +40,20 @@ To delete all content and start from scratch press `Kernel` and then `Restart & 
 ##### Data
 
 - Open the file [historic_data.ipynb](https://github.com/andrebrener/cryptocurrency_data/blob/master/historic_data.ipynb).
-- Choose the Coins that you like by adding them to the list. Make sure that the Coin is included in the [supported coins list](https://github.com/andrebrener/cryptocurrency_data/blob/master/coin_list.ipynb).
-- Choose the last day of your report.
-- Choose how many days before the end date you want the data from.
-- Choose the type of price from `close`, `high`, `low`, `open`.
+- Run the first block of code to import dependencies.
+- In the second block of code insert:
+  - The Coins you like by adding them to the list. Make sure that the Coin is included in the [supported coins list](https://github.com/andrebrener/cryptocurrency_data/blob/master/coin_list.ipynb).
+  - The last day of your report.
+  - How many days before the end date you want the data from.
+  - The type of price from `close`, `high`, `low`, `open`.
+- Run the 2nd & 3rd blocks of code.
 
 ##### Graph
-- Choose the time interval for the dates in the x-axis to be shown.
+- In the 5th block:
+  - Choose the time interval for the dates in the x-axis to be shown.
+- Run the 5th block.
 
 ##### Export CSV
-- Select File Name.
-- Run the block.
-- The file should be saved in the repo directory.
+- In the 6th block:
+  - Select File Name.
+- Run the block. The file should now be saved in the repo directory.
