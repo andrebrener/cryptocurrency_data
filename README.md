@@ -49,11 +49,11 @@ To delete all content and start from scratch press `Kernel` and then `Restart & 
 - Run the 2nd & 3rd blocks of code.
 
 ##### Graph
-- In the 5th block:
+- In the 5th block of code:
   - Choose the time interval for the dates in the x-axis to be shown.
-- Run the 5th block.
+- Run the block.
 
 ##### Export CSV
-- In the 6th block:
+- In the 6th block of code:
   - Select File Name.
 - Run the block. The file should now be saved in the repo directory.
