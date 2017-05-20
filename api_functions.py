@@ -2,7 +2,7 @@
 #          File: api_functions.py
 #        Author: Andre Brener
 #       Created: 08 May 2017
-# Last Modified: 08 May 2017
+# Last Modified: 20 May 2017
 #   Description: description
 # =============================================================================
 import json
@@ -32,6 +32,23 @@ def get_coin_list():
     coin_list = sorted(list(coin_list), reverse=False)
 
     return coin_list
+
+
+get_coin_list()
+
+
+def get_current_prices(coin_list):
+
+    coin_list_string = ','.join(coin_list)
+    price_now_url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms={}&tsyms=USD'.format(
+        coin_list_string)
+
+    response_text = requests.get(price_now_url).text
+    d = json.loads(response_text)
+
+    coin_prices = [[coin, val['USD']] for coin, val in d.items()]
+
+    return coin_prices
 
 
 def get_price_history(coin_list, end_date, days_past, price_type):
