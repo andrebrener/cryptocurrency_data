@@ -4,3 +4,4 @@ matplotlib
 ipython
 jupyter
 google-api-python-client
+pyyaml
