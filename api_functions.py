@@ -2,7 +2,7 @@
 #          File: api_functions.py
 #        Author: Andre Brener
 #       Created: 08 May 2017
-# Last Modified: 20 May 2017
+# Last Modified: 27 May 2017
 #   Description: description
 # =============================================================================
 import json
@@ -10,9 +10,6 @@ import time
 
 import requests
 import pandas as pd
-import matplotlib.dates as mdates
-
-from matplotlib import pyplot as plt
 
 
 def get_coin_list():
@@ -32,9 +29,6 @@ def get_coin_list():
     coin_list = sorted(list(coin_list), reverse=False)
 
     return coin_list
-
-
-get_coin_list()
 
 
 def get_current_prices(coin_list):
@@ -73,6 +67,10 @@ def get_price_history(coin_list, end_date, days_past, price_type):
 
 
 def get_graph(df, coin_name, day_interval, dates=True):
+    import matplotlib.dates as mdates
+
+    from matplotlib import pyplot as plt
+
     fig, ax = plt.subplots(figsize=(10, 5))
     plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%a'))
     if dates:
