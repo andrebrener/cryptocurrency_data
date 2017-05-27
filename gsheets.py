@@ -13,11 +13,13 @@ import logging.config
 
 import httplib2
 
-from config import config
+from config import config, PROJECT_DIR
 from apiclient import discovery
 from api_functions import get_current_prices
 from oauth2client import client, tools
 from oauth2client.file import Storage
+
+os.chdir(PROJECT_DIR)
 
 logger = logging.getLogger('main_logger')
 
