@@ -2,19 +2,24 @@
 #          File: gsheets.py
 #        Author: Andre Brener
 #       Created: 19 May 2017
-# Last Modified: 20 May 2017
+# Last Modified: 27 May 2017
 #   Description: description
 # =============================================================================
 from __future__ import print_function
 
 import os
+import logging
+import logging.config
 
 import httplib2
 
+from config import config
 from apiclient import discovery
 from api_functions import get_current_prices
 from oauth2client import client, tools
 from oauth2client.file import Storage
+
+logger = logging.getLogger('main_logger')
 
 try:
     import argparse
@@ -104,18 +109,26 @@ def main(spreadsheet_id, range_name):
         'sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
 
     values = read_data(service, spreadsheet_id, range_name)
+    logger.info("Got values from Sheet")
 
     if not values:
         return None
 
     coin_list = [coin for coin, val in values]
+    try:
+        new_prices = get_current_prices(coin_list)
+        logger.info("Got Coin Data")
 
-    new_prices = get_current_prices(coin_list)
+    except Exception as e:
+        logger.error(str(e))
+        raise
 
     update_data(service, spreadsheet_id, range_name, new_prices)
+    logger.info("Sheet Updated")
 
 
 if __name__ == '__main__':
+    logging.config.dictConfig(config['logger'])
 
     spreadsheet_link = 'https://docs.google.com/spreadsheets/d/1K_pKyMs9QN8HixETIYT2caL-BQF5qBOLC3pN9Hyjbvk/edit#gid=0'
     spreadsheet_id = get_id_from_link(spreadsheet_link)
