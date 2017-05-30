@@ -2,12 +2,13 @@
 #          File: gsheets.py
 #        Author: Andre Brener
 #       Created: 19 May 2017
-# Last Modified: 27 May 2017
+# Last Modified: 29 May 2017
 #   Description: description
 # =============================================================================
 from __future__ import print_function
 
 import os
+import time
 import logging
 import logging.config
 
@@ -125,6 +126,7 @@ def main(spreadsheet_id, range_name):
         logger.error(str(e))
         raise
 
+    new_prices.append(['last updated', time.strftime('%c')])
     update_data(service, spreadsheet_id, range_name, new_prices)
     logger.info("Sheet Updated")
 
