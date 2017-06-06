@@ -55,13 +55,14 @@ def get_price_history(coin_list, end_date, days_past, price_type):
         d = json.loads(response_text)
 
         df = pd.DataFrame(d['Data'])[['time', price_type]]
+
         df['coin'] = l
         df_list.append(df)
     total_df = pd.concat(df_list)
     total_df = total_df.pivot(
         index='time', columns='coin', values=price_type).reset_index()
     total_df['day'] = pd.to_datetime(total_df['time'], unit='s')
-    cols = [col for col in df.columns if col not in ['day']]
+    cols = [col for col in total_df.columns if col not in ['time']]
     total_df = total_df[cols]
     return total_df
 
@@ -88,3 +89,15 @@ def plot_graphs(df, day_interval, dates=True):
     cols = [col for col in df.columns if col not in ['time', 'day']]
     for coin_name in cols:
         get_graph(df, coin_name, day_interval)
+
+
+if __name__ == '__main__':
+    from datetime import date
+
+    coin_list = ['ETH']
+    end_date = date(2017, 5, 30)
+    days_past = 2
+
+    df = get_price_history(coin_list, end_date, days_past, 'close')
+
+    print(df)
