@@ -56,4 +56,4 @@ To delete all content and start from scratch press `Kernel` and then `Restart & 
 ##### Export CSV
 - In the 5th block of code:
   - Select File Name. Run the block.
-- Run the 6th block. The file should now be saved in the directory that is printed.
+- Run the 6th block. The file should now be saved in the directory that is printed. Note that the dir is relative to the repo path.
