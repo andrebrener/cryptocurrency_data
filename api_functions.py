@@ -2,7 +2,7 @@
 #          File: api_functions.py
 #        Author: Andre Brener
 #       Created: 08 May 2017
-# Last Modified: 27 May 2017
+# Last Modified: 05 Sep 2017
 #   Description: description
 # =============================================================================
 import json
@@ -54,9 +54,13 @@ def get_price_history(coin_list, end_date, days_past, price_type):
         response_text = requests.get(url).text
         d = json.loads(response_text)
 
+        if not len(d['Data']):
+            continue
+
         df = pd.DataFrame(d['Data'])[['time', price_type]]
 
         df['coin'] = l
+
         df_list.append(df)
     total_df = pd.concat(df_list)
     total_df = total_df.pivot(
