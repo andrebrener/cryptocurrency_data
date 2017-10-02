@@ -2,7 +2,7 @@
 #          File: api_functions.py
 #        Author: Andre Brener
 #       Created: 08 May 2017
-# Last Modified: 05 Sep 2017
+# Last Modified: 02 Oct 2017
 #   Description: description
 # =============================================================================
 import json
@@ -45,12 +45,12 @@ def get_current_prices(coin_list):
     return coin_prices
 
 
-def get_price_history(coin_list, end_date, days_past, price_type):
+def get_price_history(coin_list, end_date, days_past, price_type, currency):
     ts = time.mktime(end_date.timetuple())
     df_list = []
     for l in coin_list:
-        url = 'https://min-api.cryptocompare.com/data/histoday?fsym={}&tsym=USD&toTs={}&limit={}'.format(
-            l, ts, days_past)
+        url = 'https://min-api.cryptocompare.com/data/histoday?fsym={}&tsym={}&toTs={}&limit={}'.format(
+            l, currency, ts, days_past)
         response_text = requests.get(url).text
         d = json.loads(response_text)
 
