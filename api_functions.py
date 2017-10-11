@@ -59,12 +59,12 @@ def get_price_history(coin_list, end_date, days_past, price_type, currency):
 
         df = pd.DataFrame(d['Data'])[['time', price_type]]
 
-        df['coin'] = l
+        df['token'] = l
 
         df_list.append(df)
     total_df = pd.concat(df_list)
     total_df = total_df.pivot(
-        index='time', columns='coin', values=price_type).reset_index()
+        index='time', columns='token', values=price_type).reset_index()
     total_df['day'] = pd.to_datetime(total_df['time'], unit='s')
     cols = [col for col in total_df.columns if col not in ['time']]
     total_df = total_df[cols]

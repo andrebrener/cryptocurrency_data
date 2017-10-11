@@ -20,6 +20,8 @@ from api_functions import get_current_prices
 from oauth2client import client, tools
 from oauth2client.file import Storage
 
+from google_credentials import PRICES_SHEET_LINK, RANGE_NAME
+
 os.chdir(PROJECT_DIR)
 
 logger = logging.getLogger('main_logger')
@@ -103,7 +105,7 @@ def get_id_from_link(link):
     return spreadsheet_id
 
 
-def main(spreadsheet_id, range_name):
+def main():
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
     discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
@@ -111,7 +113,8 @@ def main(spreadsheet_id, range_name):
     service = discovery.build(
         'sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
 
-    values = read_data(service, spreadsheet_id, range_name)
+    spreadsheet_id = get_id_from_link(PRICES_SHEET_LINK)
+    values = read_data(service, spreadsheet_id, RANGE_NAME)
     logger.info("Got values from Sheet")
 
     if not values:
@@ -127,15 +130,11 @@ def main(spreadsheet_id, range_name):
         raise
 
     new_prices.append(['last updated', time.strftime('%c')])
-    update_data(service, spreadsheet_id, range_name, new_prices)
+    update_data(service, spreadsheet_id, RANGE_NAME, new_prices)
     logger.info("Sheet Updated")
 
 
 if __name__ == '__main__':
     logging.config.dictConfig(config['logger'])
 
-    spreadsheet_link = 'https://docs.google.com/spreadsheets/d/1K_pKyMs9QN8HixETIYT2caL-BQF5qBOLC3pN9Hyjbvk/edit#gid=0'
-    spreadsheet_id = get_id_from_link(spreadsheet_link)
-    range_name = 'crypto_prices!A1:B'
-
-    main(spreadsheet_id, range_name)
+    main()
