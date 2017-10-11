@@ -46,6 +46,7 @@ To delete all content and start from scratch press `Kernel` and then `Restart & 
   - The last day of your report.
   - How many days before the end date you want the data from.
   - The type of price from `close`, `high`, `low`, `open`.
+  - The currency for the prices.
 - Run the 2nd & 3rd blocks of code.
 
 ##### Graph
