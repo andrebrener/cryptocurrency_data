@@ -2,7 +2,7 @@
 #          File: gsheets.py
 #        Author: Andre Brener
 #       Created: 19 May 2017
-# Last Modified: 29 May 2017
+# Last Modified: 06 Jan 2018
 #   Description: description
 # =============================================================================
 from __future__ import print_function
@@ -17,10 +17,9 @@ import httplib2
 from config import config, PROJECT_DIR
 from apiclient import discovery
 from api_functions import get_current_prices
+from google_credentials import PRICES_SHEET_LINK, RANGE_NAME
 from oauth2client import client, tools
 from oauth2client.file import Storage
-
-from google_credentials import PRICES_SHEET_LINK, RANGE_NAME
 
 os.chdir(PROJECT_DIR)
 
@@ -54,7 +53,8 @@ def get_credentials():
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
     credential_path = os.path.join(
-        credential_dir, 'sheets.googleapis.com-python-quickstart.json')
+        credential_dir, 'sheets.googleapis.com-python-quickstart.json'
+    )
 
     store = Storage(credential_path)
     credentials = store.get()
@@ -72,7 +72,8 @@ def get_credentials():
 def read_data(service, spreadsheet_id, range_name):
 
     result = service.spreadsheets().values().get(
-        spreadsheetId=spreadsheet_id, range=range_name).execute()
+        spreadsheetId=spreadsheet_id, range=range_name
+    ).execute()
 
     values = result.get('values', [])
 
@@ -82,12 +83,14 @@ def read_data(service, spreadsheet_id, range_name):
     return values
 
 
-def update_data(service,
-                spreadsheet_id,
-                range_name,
-                new_values,
-                value_input_option='USER_ENTERED',
-                major_dimension='ROWS'):
+def update_data(
+    service,
+    spreadsheet_id,
+    range_name,
+    new_values,
+    value_input_option='USER_ENTERED',
+    major_dimension='ROWS'
+):
     body = {}
     body['range'] = range_name
     body['majorDimension'] = major_dimension
@@ -97,7 +100,8 @@ def update_data(service,
         spreadsheetId=spreadsheet_id,
         range=range_name,
         valueInputOption=value_input_option,
-        body=body).execute()
+        body=body
+    ).execute()
 
 
 def get_id_from_link(link):
@@ -108,10 +112,13 @@ def get_id_from_link(link):
 def main():
     credentials = get_credentials()
     http = credentials.authorize(httplib2.Http())
-    discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?'
-                    'version=v4')
+    discoveryUrl = (
+        'https://sheets.googleapis.com/$discovery/rest?'
+        'version=v4'
+    )
     service = discovery.build(
-        'sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl)
+        'sheets', 'v4', http=http, discoveryServiceUrl=discoveryUrl
+    )
 
     spreadsheet_id = get_id_from_link(PRICES_SHEET_LINK)
     values = read_data(service, spreadsheet_id, RANGE_NAME)

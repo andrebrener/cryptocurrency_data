@@ -2,7 +2,7 @@
 #          File: api_functions.py
 #        Author: Andre Brener
 #       Created: 08 May 2017
-# Last Modified: 02 Oct 2017
+# Last Modified: 06 Jan 2018
 #   Description: description
 # =============================================================================
 import json
@@ -21,10 +21,12 @@ def get_coin_list():
     d = json.loads(response_text)
     data = d['Data']
 
-    coin_list = set([
-        val['Name'] for val in data.values()
-        if all(kw not in val['Name'] for kw in ['*', ' '])
-    ])
+    coin_list = set(
+        [
+            val['Name'] for val in data.values()
+            if all(kw not in val['Name'] for kw in ['*', ' '])
+        ]
+    )
 
     coin_list = sorted(list(coin_list), reverse=False)
 
@@ -35,7 +37,8 @@ def get_current_prices(coin_list):
 
     coin_list_string = ','.join(coin_list)
     price_now_url = 'https://min-api.cryptocompare.com/data/pricemulti?fsyms={}&tsyms=USD'.format(
-        coin_list_string)
+        coin_list_string
+    )
 
     response_text = requests.get(price_now_url).text
     d = json.loads(response_text)
@@ -50,7 +53,8 @@ def get_price_history(coin_list, end_date, days_past, price_type, currency):
     df_list = []
     for l in coin_list:
         url = 'https://min-api.cryptocompare.com/data/histoday?fsym={}&tsym={}&toTs={}&limit={}'.format(
-            l, currency, ts, days_past)
+            l, currency, ts, days_past
+        )
         response_text = requests.get(url).text
         d = json.loads(response_text)
 
@@ -64,7 +68,8 @@ def get_price_history(coin_list, end_date, days_past, price_type, currency):
         df_list.append(df)
     total_df = pd.concat(df_list)
     total_df = total_df.pivot(
-        index='time', columns='token', values=price_type).reset_index()
+        index='time', columns='token', values=price_type
+    ).reset_index()
     total_df['day'] = pd.to_datetime(total_df['time'], unit='s')
     cols = [col for col in total_df.columns if col not in ['time']]
     total_df = total_df[cols]
