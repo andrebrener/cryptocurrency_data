@@ -2,7 +2,7 @@
 #          File: gsheets.py
 #        Author: Andre Brener
 #       Created: 19 May 2017
-# Last Modified: 06 Jan 2018
+# Last Modified: 26 Mar 2018
 #   Description: description
 # =============================================================================
 from __future__ import print_function
@@ -137,6 +137,7 @@ def main():
         raise
 
     new_prices.append(['last updated', time.strftime('%c')])
+
     update_data(service, spreadsheet_id, RANGE_NAME, new_prices)
     logger.info("Sheet Updated")
 
