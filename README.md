@@ -27,7 +27,7 @@ The notebook is divided into blocks. The different blocks with code can be ident
 
 ![img](http://i.imgur.com/JrRyW5j.png)
 
-Each block is run separately by pressing the Play button (screenshot below) or with shortcut of Shift+Enter.
+Each block is run separately by pressing the Play button (screenshot below) or with shortcut `Shift+Enter`.
 
 ![img](http://i.imgur.com/0EWhMFo.png)
 
@@ -57,4 +57,4 @@ To delete all content and start from scratch press `Kernel` and then `Restart & 
 ##### Export CSV
 - In the 5th block of code:
   - Select File Name. Run the block.
-- Run the 6th block. The file should now be saved in the directory that is printed. Note that the dir is relative to the repo path.
+- Run the 6th block. The file should now be saved in the directory printed below. Note that the directory is relative to the repo path.
