@@ -1,0 +1,39 @@
+# Byte-compiled / optimized / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets / credentials (never commit these)
+google_credentials.py
+client_secret.json
+.credentials/
+credentials.json
+token.json
+*.pem
+
+# Generated data & logs
+data/
+*.csv
+*.log
+gsheets.log
+
+# OS / editor cruft
+.DS_Store
+.idea/
+.vscode/
